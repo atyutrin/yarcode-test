@@ -1,0 +1,42 @@
+{
+    "name": "yarcode/yii2-app-yarcode",
+    "description": "Yii 2 YarCode Project Template",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "https://github.com/yarcode/yii2-app-yarcode",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yarcode/yii2-app-yarcode/issues?state=open",
+        "source": "https://github.com/yarcode/yii2-app-yarcode"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0",
+        "yiisoft/yii2": "~2.0.12",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yarcode/yii2-tools-yarcode": "^1",
+        "yarcode/yii2-fa": "^1.0",
+        "kartik-v/yii2-widget-alert": "^1.1",
+        "kartik-v/yii2-widget-growl": "^1.1",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "vlucas/phpdotenv": "^2.4",
+        "friendsofphp/php-cs-fixer": "^2.4"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0.0",
+        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/base": "^2.2.3",
+        "codeception/verify": "~0.3.1"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
