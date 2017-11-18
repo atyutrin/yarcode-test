@@ -6,13 +6,15 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+use common\widgets\NavBarAgency;
 use frontend\assets\AppAsset;
-use kartik\alert\AlertBlock;
+use frontend\assets\AppAssetIE9;
+
 
 AppAsset::register($this);
+AppAssetIE9::register($this);
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -22,56 +24,75 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body id="page-top" class="index">
 <?php $this->beginBody() ?>
-
-<div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => 'YarCode',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = ['label' => '<i class="fa fa-user"></i> ' . Yii::$app->user->identity->name, 'items' => [
-            [
-                'label' => 'Logout',
-                'url' => ['/site/logout'],
-                'linkOptions' => ['data-method' => 'post']
+       NavBarAgency::begin([
+            'brandLabel' => 'Start Bootstrap',
+            'brandUrl' => ['#' => 'page-top'],
+            'options' => [
+                    'class' => 'navbar navbar-default navbar-custom navbar-fixed-top',
+                    'id' => 'mainNav',
             ],
-        ]];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-        'encodeLabels' => false,
-    ]);
-    NavBar::end();
+           'brandOptions' => ['class' => 'page-scroll']
+        ]);
+        $menuItems = [
+            ['label' => 'Services', 'url' => ['#' => 'services'], 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Portfolio', 'url' => ['#' => 'portfolio'], 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'About', 'url' => ['#' => 'about'], 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Team', 'url' => ['#' => 'team'], 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Contact', 'url' => ['#' => 'contact'], 'linkOptions'=>['class'=>'page-scroll']],
+
+        ];
+        echo Nav::widget([
+            'options' => ['class' => 'nav navbar-nav navbar-right'],
+            'items' => $menuItems,
+            'encodeLabels' => false,
+        ]);
+
+        NavBarAgency::end();
     ?>
 
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-heading">It's Nice To Meet You</div>
+                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div>
+        </div>
+    </header>
+
+
     <div class="container">
-        <?= AlertBlock::widget([
-            'useSessionFlash' => true,
-            'type' => AlertBlock::TYPE_GROWL
-        ]); ?>
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= $content ?>
     </div>
-</div>
 
-<footer class="footer">
+<footer>
     <div class="container">
-        <p class="pull-left">&copy; YarCode <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; Your Website 2016</span>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline social-buttons">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li><a href="#">Privacy Policy</a>
+                    </li>
+                    <li><a href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </footer>
 
