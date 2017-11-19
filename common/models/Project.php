@@ -20,6 +20,7 @@ use yii\web\UploadedFile;
 class Project extends ActiveRecord
 {
     const pathToImg = '\web\img\portfolio\\';
+    const pathToImgFront = '../img/portfolio//';
 
     /**
      * @var UploadedFile
@@ -64,6 +65,14 @@ class Project extends ActiveRecord
             'client' => 'Client',
             'category' => 'Category',
         ];
+    }
+
+    /**
+     * Возвращает url изображения
+     * @return string
+     */
+    public function getImgUrl(){
+        return self::pathToImgFront . $this->picture;
     }
 
     /**

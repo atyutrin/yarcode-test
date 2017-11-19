@@ -18,6 +18,7 @@ use yii\web\UploadedFile;
 class About extends ActiveRecord
 {
     const pathToImg = '\web\img\about\\';
+    const pathToImgFront = '../img/about//';
 
     /**
      * @var UploadedFile
@@ -76,5 +77,13 @@ class About extends ActiveRecord
         } else {
             return false;
         }
+    }
+
+    /**
+     * Возварщает url изображения
+     * @return string
+     */
+    public function getImgUrl(){
+        return self::pathToImgFront . $this->picture;
     }
 }

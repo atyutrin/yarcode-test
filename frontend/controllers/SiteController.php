@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\About;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -11,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
+use common\models\Project;
 
 /**
  * Site controller
@@ -66,7 +68,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $projects = Project::find()->all();
+
+        $aboutRecords = About::find()->orderBy('order')->all();
+
+        return $this->render('index', [
+                'projects' => $projects,
+                'aboutRecords' => $aboutRecords
+            ]);
     }
 
     /**
