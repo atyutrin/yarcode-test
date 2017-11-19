@@ -5,13 +5,14 @@ namespace common\models;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "about_record".
+ * This is the model class for table "about".
  *
  * @property integer $id
  * @property string $date
  * @property string $subtitle
  * @property string $description
  * @property string $picture
+ * @property integer $order
  */
 class About extends ActiveRecord
 {
@@ -30,6 +31,7 @@ class About extends ActiveRecord
     {
         return [
             [['description'], 'string'],
+            [['order'], 'integer'],
             [['date'], 'string', 'max' => 64],
             [['subtitle', 'picture'], 'string', 'max' => 128],
         ];
@@ -46,6 +48,7 @@ class About extends ActiveRecord
             'subtitle' => 'Subtitle',
             'description' => 'Description',
             'picture' => 'Picture',
+            'order' => 'Order'
         ];
     }
 }
