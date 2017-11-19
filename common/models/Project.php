@@ -19,7 +19,7 @@ use yii\web\UploadedFile;
  */
 class Project extends ActiveRecord
 {
-    const pathToImg = '\web\img\projects\\';
+    const pathToImg = '\web\img\portfolio\\';
 
     /**
      * @var UploadedFile

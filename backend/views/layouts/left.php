@@ -34,6 +34,7 @@
                     ['label' => 'Main Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Home', 'icon' => 'home', 'url' => ['/site/index']],
                     ['label' => 'Projects', 'icon' => 'id-card-o', 'url' => ['/project/index']],
+                    ['label' => 'About', 'icon' => 'users', 'url' => ['/about/index']],
                     ['label' => 'Change Password', 'icon' => 'lock', 'url' => ['/profile/change-password']],
                 ],
             ]

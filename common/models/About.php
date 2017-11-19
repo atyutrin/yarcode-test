@@ -3,6 +3,7 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "about".
@@ -16,6 +17,13 @@ use yii\db\ActiveRecord;
  */
 class About extends ActiveRecord
 {
+    const pathToImg = '\web\img\about\\';
+
+    /**
+     * @var UploadedFile
+     */
+    public $pictureFile;
+
     /**
      * @inheritdoc
      */
@@ -30,6 +38,7 @@ class About extends ActiveRecord
     public function rules()
     {
         return [
+            [['order'], 'required'],
             [['description'], 'string'],
             [['order'], 'integer'],
             [['date'], 'string', 'max' => 64],
@@ -50,5 +59,22 @@ class About extends ActiveRecord
             'picture' => 'Picture',
             'order' => 'Order'
         ];
+    }
+
+    /**
+     * Upload file
+     * @return bool
+     */
+    public function upload()
+    {
+        if ($this->validate() && $this->pictureFile) {
+            $path = \Yii::getAlias('@frontend') . self::pathToImg;
+            $this->picture = $this->pictureFile->baseName . '.' . $this->pictureFile->extension;
+            $this->pictureFile->saveAs($path . $this->picture);
+            $this->pictureFile = null;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
