@@ -13,14 +13,14 @@ use yii\db\ActiveRecord;
  * @property string $description
  * @property string $picture
  */
-class AboutRecord extends ActiveRecord
+class About extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'about_record';
+        return 'about';
     }
 
     /**
