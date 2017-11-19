@@ -3,6 +3,7 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "project".
@@ -18,6 +19,13 @@ use yii\db\ActiveRecord;
  */
 class Project extends ActiveRecord
 {
+    const pathToImg = '\web\img\projects\\';
+
+    /**
+     * @var UploadedFile
+     */
+    public $pictureFile;
+
     /**
      * @inheritdoc
      */
@@ -37,6 +45,7 @@ class Project extends ActiveRecord
             [['title', 'picture'], 'string', 'max' => 128],
             [['subtitle'], 'string', 'max' => 256],
             [['date', 'client', 'category'], 'string', 'max' => 64],
+            [['pictureFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg']
         ];
     }
 
@@ -50,10 +59,27 @@ class Project extends ActiveRecord
             'title' => 'Title',
             'subtitle' => 'Subtitle',
             'description' => 'Description',
-            'picture' => 'Picture',
+            'pictureFile' => 'Picture',
             'date' => 'Date',
             'client' => 'Client',
             'category' => 'Category',
         ];
+    }
+
+    /**
+     * Upload file
+     * @return bool
+     */
+    public function upload()
+    {
+        if ($this->validate() && $this->pictureFile) {
+            $path = \Yii::getAlias('@frontend') . self::pathToImg;
+            $this->picture = $this->pictureFile->baseName . '.' . $this->pictureFile->extension;
+            $this->pictureFile->saveAs($path . $this->picture);
+            $this->pictureFile = null;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
