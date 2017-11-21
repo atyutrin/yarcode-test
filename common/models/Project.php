@@ -4,6 +4,7 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
+use Yii;
 
 /**
  * This is the model class for table "project".
@@ -20,7 +21,7 @@ use yii\web\UploadedFile;
 class Project extends ActiveRecord
 {
     const pathToImg = '\web\img\portfolio\\';
-    const pathToImgFront = '../img/portfolio//';
+    const pathToImgFront = 'img/portfolio//';
 
     /**
      * @var UploadedFile

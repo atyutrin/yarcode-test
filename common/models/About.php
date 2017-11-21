@@ -18,7 +18,7 @@ use yii\web\UploadedFile;
 class About extends ActiveRecord
 {
     const pathToImg = '\web\img\about\\';
-    const pathToImgFront = '../img/about//';
+    const pathToImgFront = 'img/about//';
 
     /**
      * @var UploadedFile
