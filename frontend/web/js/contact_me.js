@@ -1,7 +1,7 @@
 // Contact Form Scripts
 
 $(function() {
-
+/*
     $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
@@ -9,40 +9,45 @@ $(function() {
         },
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
-            // get values from FORM
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
+*/
+
+    $('#contactForm').on('submit', function(e) {
+            $('#submit').prop('disabled', true);
+            var form = $(this);
+            var formData = form.serialize();
+
+            var firstName = $("input#contactform-name").val(); // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: form.attr("action"),
                 type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
-                },
+                data: formData,
                 cache: false,
-                success: function() {
-                    // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
-
-                    //clear all fields
+                success: function(response) {
+                    $('#submit').prop('disabled', false);
+                    var data = JSON.parse(response);
+                    if (data.send){
+                        $('#success').html("<div class='alert alert-success'>");
+                        $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                            .append("</button>");
+                        $('#success > .alert-success')
+                            .append("<strong>" + data.message + "</strong>");
+                        $('#success > .alert-success')
+                            .append('</div>');
+                    } else {
+                        $('#success').html("<div class='alert alert-danger'>");
+                        $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                            .append("</button>");
+                        $('#success > .alert-danger').append("<strong>" + data.message + "<strong/>");
+                        $('#success > .alert-danger').append('</div>');
+                    }
                     $('#contactForm').trigger("reset");
                 },
                 error: function() {
+                    $('#submit').prop('disabled', false);
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -53,10 +58,8 @@ $(function() {
                     $('#contactForm').trigger("reset");
                 },
             });
-        },
-        filter: function() {
-            return $(this).is(":visible");
-        },
+    }).on('submit', function(e){
+        e.preventDefault();
     });
 
     $("a[data-toggle=\"tab\"]").click(function(e) {
@@ -67,6 +70,6 @@ $(function() {
 
 
 /*When clicking on Full hide fail/success boxes */
-$('#name').focus(function() {
+$('#contactform-name').focus(function() {
     $('#success').html('');
 });

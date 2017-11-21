@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $projects \common\models\Project[] */
 /* @var $aboutRecords \common\models\About[] */
+/* @var $contactForm \frontend\models\ContactForm */
 $this->title = 'Frontend';
 ?>
 <?= $this->render('services'); ?>
@@ -17,3 +18,5 @@ $this->title = 'Frontend';
 <?= $this->render('team'); ?>
 
 <?= $this->render('clients'); ?>
+
+<?= $this->render('contact', ['contactForm' => $contactForm]); ?>
