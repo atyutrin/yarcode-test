@@ -5,10 +5,11 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use common\widgets\NavBarAgency;
 use frontend\assets\AppAsset;
 use frontend\assets\AppAssetIE9;
+use yii\bootstrap\Modal;
+
 
 
 AppAsset::register($this);
@@ -83,9 +84,25 @@ AppAssetIE9::register($this);
             </div>
             <div class="col-md-4">
                 <ul class="list-inline quicklinks">
-                    <li><a href="#">Privacy Policy</a>
+                    <li>
+                        <?php
+                            Modal::begin([
+                            'header' => '<h5>Privacy Policy</h5>',
+                            'toggleButton' => ['tag' => 'a', 'label' => 'Privacy Policy', 'class' => 'link-bottom'],
+                            ]);
+                            echo $this->render('/site/privacy-policy');
+                            Modal::end();
+                         ?>
                     </li>
-                    <li><a href="#">Terms of Use</a>
+                    <li>
+                        <?php
+                        Modal::begin([
+                            'header' => '<h5>Terms of use</h5>',
+                            'toggleButton' => ['tag' => 'a', 'label' => 'Terms of use', 'class' => 'link-bottom'],
+                        ]);
+                        echo $this->render('/site/terms-of-use');
+                        Modal::end();
+                        ?>
                     </li>
                 </ul>
             </div>
