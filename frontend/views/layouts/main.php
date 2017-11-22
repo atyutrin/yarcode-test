@@ -30,7 +30,7 @@ AppAssetIE9::register($this);
     <?php
        NavBarAgency::begin([
             'brandLabel' => 'Start Bootstrap',
-            'brandUrl' => ['/', '#' => 'page-top'],
+            'brandUrl' => '#page-top',
             'options' => [
                     'class' => 'navbar navbar-default navbar-custom navbar-fixed-top',
                     'id' => 'mainNav',
@@ -38,11 +38,11 @@ AppAssetIE9::register($this);
            'brandOptions' => ['class' => 'page-scroll']
         ]);
         $menuItems = [
-            ['label' => 'Services', 'url' => ['/', '#' => 'services'], 'linkOptions'=>['class'=>'page-scroll']],
-            ['label' => 'Portfolio', 'url' => ['/', '#' => 'portfolio'], 'linkOptions'=>['class'=>'page-scroll']],
-            ['label' => 'About', 'url' => ['/', '#' => 'about'], 'linkOptions'=>['class'=>'page-scroll']],
-            ['label' => 'Team', 'url' => ['/', '#' => 'team'], 'linkOptions'=>['class'=>'page-scroll']],
-            ['label' => 'Contact', 'url' => ['/', '#' => 'contact'], 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Services', 'url' => '#services', 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Portfolio', 'url' => '#portfolio', 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'About', 'url' => '#about', 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Team', 'url' => '#team', 'linkOptions'=>['class'=>'page-scroll']],
+            ['label' => 'Contact', 'url' => '#contact', 'linkOptions'=>['class'=>'page-scroll']],
 
         ];
         echo Nav::widget([

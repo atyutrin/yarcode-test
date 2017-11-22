@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/agency.js',
         'js/contact_me.js',
-        'js/jqBootstrapValidation.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
