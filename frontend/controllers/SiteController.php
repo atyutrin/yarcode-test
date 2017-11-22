@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\About;
+use frontend\models\ContactForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -11,6 +13,7 @@ use yii\helpers\ArrayHelper;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
+use common\models\Project;
 
 /**
  * Site controller
@@ -66,7 +69,36 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $projects = Project::find()->all();
+
+        $aboutRecords = About::find()->orderBy('order')->all();
+
+        $contactForm = new ContactForm();
+
+        return $this->render('index', [
+                'projects' => $projects,
+                'aboutRecords' => $aboutRecords,
+                'contactForm' => $contactForm
+            ]);
+    }
+
+    /**
+     *
+     */
+    public function actionContact()
+    {
+        $model = new ContactForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->contact(Yii::$app->params['adminEmail'])) {
+                echo json_encode(['send' => true, 'message' => $model::SEND_SUCCESS_MESSAGE]);
+            } else {
+                echo json_encode(['send' => false, 'message' => $model::SEND_FAILURE_MESSAGE]);
+            }
+        } else {
+            echo json_encode(['send' => false, 'message' => $model::VALIDATE_FAILURE_MESSAGE]);
+        }
+
     }
 
     /**
