@@ -11,15 +11,14 @@
             </div>
         </div>
         <div class="row">
-            <?php foreach ($projects as $project): ?>
+            <?php foreach ($projects as $key => $project): ?>
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                    <a href="#portfolioModal<?= $key + 1 ?>" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <?= \yii\helpers\Html::img(Yii::getAlias('@web').$project->picture); ?>
                         <img src="<?= $project->getImgUrl(); ?>" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">

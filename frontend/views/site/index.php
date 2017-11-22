@@ -20,3 +20,5 @@ $this->title = 'Frontend';
 <?= $this->render('clients'); ?>
 
 <?= $this->render('contact', ['contactForm' => $contactForm]); ?>
+
+<?= $this->render('projects-modal', ['projects' => $projects]); ?>
