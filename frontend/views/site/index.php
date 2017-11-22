@@ -4,7 +4,7 @@
 /* @var $projects \common\models\Project[] */
 /* @var $aboutRecords \common\models\About[] */
 /* @var $contactForm \frontend\models\ContactForm */
-$this->title = 'Frontend';
+$this->title = 'Тестовое задание Junior Yii2 Developer';
 ?>
 <?= $this->render('services'); ?>
 <?php if($projects): ?>
@@ -21,4 +21,6 @@ $this->title = 'Frontend';
 
 <?= $this->render('contact', ['contactForm' => $contactForm]); ?>
 
-<?= $this->render('projects-modal', ['projects' => $projects]); ?>
+<?php if($projects): ?>
+    <?= $this->render('projects-modal', ['projects' => $projects]); ?>
+<?php endif; ?>
